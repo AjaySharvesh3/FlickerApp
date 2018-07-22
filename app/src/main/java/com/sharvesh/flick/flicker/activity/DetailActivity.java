@@ -127,8 +127,8 @@ public class DetailActivity extends AppCompatActivity {
             String vote_average = getIntent().getExtras().getString("vote_average");
             String language = getIntent().getExtras().getString("original_language");
             String overview = getIntent().getExtras().getString("overview");
-            String poster = getIntent().getExtras().getString("poster_path");
-            String backdrop = getIntent().getExtras().getString("backdrop_path");
+            String poster = "http://image.tmdb.org/t/p/w185" + getIntent().getExtras().getString("poster_path");
+            String backdrop = "http://image.tmdb.org/t/p/w780" + getIntent().getExtras().getString("backdrop_path");
 
             movieName.setText(movie_name);
             releaseDate.setText(release_date);
@@ -150,13 +150,13 @@ public class DetailActivity extends AppCompatActivity {
         initView_reviews();
 
         LikeButton likeButton = findViewById(R.id.fav_button);
-        SharedPreferences sharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
         likeButton.setOnLikeListener(new OnLikeListener() {
             @Override
             public void liked(LikeButton likeButton) {
                 SharedPreferences.Editor editor =
-                        getSharedPreferences("com.sharvesh.flick.flicker.activity", MODE_PRIVATE).edit();
+                        getSharedPreferences("com.sharvesh.flick.flicker.activity.DetailActivity", MODE_PRIVATE).edit();
                 editor.putBoolean("Favorite Added!", true);
                 editor.commit();
                 saveAsFavorite();
@@ -170,6 +170,8 @@ public class DetailActivity extends AppCompatActivity {
                         });
                 snackbar.setActionTextColor(Color.YELLOW);
 
+                likeButton.setLiked(true);
+
                 View sbView = snackbar.getView();
                 TextView textView = sbView.findViewById(android.support.design.R.id.snackbar_text);
                 textView.setTextColor(Color.WHITE);
@@ -180,15 +182,17 @@ public class DetailActivity extends AppCompatActivity {
             public void unLiked(LikeButton likeButton) {
                 int movie_id = getIntent().getExtras().getInt("id");
                 favoriteDbHelper = new FavoriteDbHelper(activity);
-                favoriteDbHelper.deleteFromFavorite(movie_id);
+                favoriteDbHelper.deleteFavorite(movie_id);
                 SharedPreferences.Editor editor =
-                        getSharedPreferences("com.sharvesh.flick.flicker.activity", MODE_PRIVATE).edit();
+                        getSharedPreferences("com.sharvesh.flick.flicker.activity.DetailActivity", MODE_PRIVATE).edit();
                 editor.putBoolean("Favorite Removed!", true);
                 editor.commit();
                 Snackbar.make(coordinatorLayout, "Removed from Favorite", Snackbar.LENGTH_SHORT).show();
+                likeButton.setLiked(false);
             }
         });
     }
+
 
     private void initViewsVideoList(){
         trailersList = new ArrayList<>();
@@ -343,7 +347,7 @@ public class DetailActivity extends AppCompatActivity {
         favMovies.setVoteAverage(Double.parseDouble(vote));
         favMovies.setOverview(overviewTv.getText().toString().trim());
 
-        favoriteDbHelper.addToFavorite(favMovies);
+        favoriteDbHelper.addFavorite(favMovies);
     }
 
 }

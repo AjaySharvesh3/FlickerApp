@@ -2,16 +2,19 @@
 <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/grad_bg"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinator_layout"
+        android:background="@drawable/grad_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/grad_bg"
             android:theme="@style/ThemeOverlay.AppCompat"
             app:toolbarId="@+id/toolbar">
 
@@ -20,6 +23,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:text="@string/app_name"
+                    android:background="@drawable/grad_bg"
                     app:layout_scrollFlags="scroll|enterAlways"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                     app:layout_collapseMode="pin"

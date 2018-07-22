@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/grad_bg"
     android:layout_height="match_parent"
     android:id="@+id/coordinator_layout"
     tools:context=".activity.DetailActivity">
@@ -12,6 +13,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:background="@drawable/grad_bg"
         android:id="@+id/appbarlayout_id">
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -21,6 +23,7 @@
             app:layout_scrollFlags="exitUntilCollapsed|scroll"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginStart="48dp"
+            android:background="@drawable/grad_bg"
             app:title="Anime Title"
             app:expandedTitleMarginEnd="64dp"
             app:toolbarId="@+id/toolbar">
@@ -41,12 +44,30 @@
                 app:layout_collapseMode="pin"
                 android:theme="@style/ThemeOverlay.AppCompat.Light">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize">
+
                 <ImageButton
                     android:id="@+id/back_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/draw_circle_background"
                     android:src="@drawable/ic_back_button"/>
+
+                <com.like.LikeButton
+                    app:icon_type="heart"
+                    app:icon_size="23dp"
+                    android:id="@+id/fav_button"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_width="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_height="60dp"/>
+
+                </RelativeLayout>
 
             </android.support.v7.widget.Toolbar>
 
@@ -59,6 +80,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:paddingLeft="10dp"
+        android:background="@drawable/grad_bg"
         android:paddingRight="10dp" >
 
         <LinearLayout
@@ -109,6 +131,7 @@
                         android:layout_height="wrap_content"
                         android:text="Movie Title"
                         android:textSize="12sp"
+                        android:textStyle="bold"
                         android:layout_marginStart="5dp"/>
 
                     <TextView
@@ -121,13 +144,14 @@
                         android:marqueeRepeatLimit="marquee_forever"
                         android:singleLine="true"
                         android:ellipsize="marquee"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/white"
                         android:textSize="25sp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Release Date"
+                        android:textStyle="bold"
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="5dp"
                         android:textSize="12sp" />
@@ -139,12 +163,14 @@
                         tools:text="Release Date"
                         android:layout_marginStart="5dp"
                         android:textStyle="bold"
+                        android:textColor="@color/white"
                         android:id="@+id/releaseDate"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="User Rating"
+                        android:textStyle="bold"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="10dp"
                         android:textSize="12sp" />
@@ -154,6 +180,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/vote"
                         tools:text="@string/rating"
+                        android:textColor="@color/white"
                         android:layout_marginTop="3dp"
                         android:textSize="15sp"
                         android:layout_marginStart="5dp"
@@ -164,6 +191,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Language"
+                        android:textStyle="bold"
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="5dp"
                         android:textSize="12sp" />
@@ -173,6 +201,7 @@
                         android:layout_height="wrap_content"
                         tools:text="en"
                         android:textStyle="bold"
+                        android:textColor="@color/white"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="3dp"
                         android:id="@+id/language"/>
@@ -185,52 +214,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.7dp"
                 android:layout_marginTop="20dp"
-                android:background="#ABB2B9"/>
+                android:background="@color/darkView"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center"
-                android:layout_margin="10dp">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_margin="10dp">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/add_to_favorite"
-                    android:textColor="#EC7063"
-                    android:textSize="16sp"
-                    android:gravity="center"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="23dp"
-                    android:textStyle="bold" />
+                <!--&lt;!&ndash;<com.like.LikeButton&ndash;&gt;-->
+                    <!--&lt;!&ndash;app:icon_type="heart"&ndash;&gt;-->
+                    <!--&lt;!&ndash;app:icon_size="23dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/fav_button"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginTop="5dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginBottom="5dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="5dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="60dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="60dp"/>&ndash;&gt;-->
 
-                <com.like.LikeButton
-                    app:icon_type="heart"
-                    app:icon_size="23dp"
-                    android:id="@+id/fav_button"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.7dp"
-                android:layout_marginBottom="10dp"
-                android:background="#ABB2B9"/>
+            <!--</LinearLayout>-->
 
         <TextView
             android:text="@string/overview"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:textStyle="bold"
             android:textSize="23sp"
-            android:textColor="@color/colorPrimary"
-            android:drawableLeft="@drawable/ic_overview"
+            android:textColor="@color/white"
+            android:drawableLeft="@drawable/ic_movie_filter_black_24dp"
             android:layout_height="wrap_content" />
 
             <com.borjabravo.readmoretextview.ReadMoreTextView
@@ -240,18 +252,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/overview"
+                android:textColor="@color/white"
                 app:trimExpandedText="Show more"
                 app:trimCollapsedText="Show less"
                 app:trimMode="trimModeLine"
                 app:trimLines="2"
-                app:colorClickableText="@color/colorPrimaryDark"/>
+                app:colorClickableText="@color/darkView"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.7dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
-                android:background="#ABB2B9"/>
+                android:background="@color/darkView"/>
 
             <TextView
                 android:text="@string/casts"
@@ -259,7 +272,7 @@
                 android:layout_width="match_parent"
                 android:textStyle="bold"
                 android:textSize="23sp"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/white"
                 android:drawableLeft="@drawable/ic_casts"
                 android:layout_height="wrap_content" />
 
@@ -277,7 +290,7 @@
                 android:layout_height="0.7dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
-                android:background="#ABB2B9"/>
+                android:background="@color/darkView"/>
 
             <TextView
                 android:text="@string/reviews"
@@ -285,8 +298,8 @@
                 android:layout_width="match_parent"
                 android:textStyle="bold"
                 android:textSize="23sp"
-                android:textColor="@color/colorPrimary"
-                android:drawableLeft="@drawable/ic_casts"
+                android:textColor="@color/white"
+                android:drawableLeft="@drawable/ic_reviews"
                 android:layout_height="wrap_content" />
 
             <android.support.v7.widget.RecyclerView
@@ -303,7 +316,7 @@
                 android:layout_height="0.7dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
-                android:background="#ABB2B9"/>
+                android:background="@color/darkView"/>
 
             <TextView
                 android:text="@string/trailer"
@@ -311,7 +324,7 @@
                 android:layout_width="match_parent"
                 android:textStyle="bold"
                 android:textSize="23sp"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/white"
                 android:drawableLeft="@drawable/ic_trailer"
                 android:layout_height="wrap_content" />
 

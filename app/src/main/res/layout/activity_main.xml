@@ -2,16 +2,21 @@
 <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/grad_bg"
+    android:animateLayoutChanges="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
 <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
+        android:background="@drawable/grad_bg"
         android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/grad_bg"
             android:theme="@style/ThemeOverlay.AppCompat"
             app:toolbarId="@+id/toolbar">
 
@@ -20,6 +25,8 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
+            android:background="@drawable/grad_bg"
+            android:hapticFeedbackEnabled="true"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
 
@@ -42,7 +49,9 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
+                android:animateLayoutChanges="true"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                tools:targetApi="lollipop">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -54,6 +63,9 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="35dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:transitionName="movieIcon"
                         android:src="@drawable/movie_logo"/>
 
                 <TextView
@@ -88,7 +100,6 @@
                 app:tabGravity="fill"
                 app:tabMode="scrollable"
                 tools:targetApi="n"
-                android:paddingStart="5dp"
                 tools:ignore="RtlSymmetry">
 
 
@@ -149,9 +160,9 @@
         app:menu_labels_showShadow="true"
         app:menu_openDirection="up"
         app:menu_colorRipple="@color/viewBg"
-        app:menu_colorNormal="@color/colorPrimary"
+        app:menu_colorNormal="@color/swipe_refresher_color"
         app:menu_labels_textColor="@color/viewBg"
-        app:menu_colorPressed="@color/colorPrimary">
+        app:menu_colorPressed="@color/swipe_refresher_color">
 
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"
@@ -159,17 +170,17 @@
             app:fab_label="@string/settings"
             app:fab_size="mini"
             android:src="@drawable/settings"
-            app:fab_colorNormal="@color/colorPrimary"
-            android:background="@color/colorPrimaryDark"
+            app:fab_colorNormal="@color/swipe_refresher_color"
+            android:background="@color/swipe_refresher_color"
             android:id="@+id/fab_action_button_settings"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_label="@string/fav"
-            app:fab_colorNormal="@color/colorPrimary"
+            app:fab_colorNormal="@color/swipe_refresher_color"
             app:fab_size="mini"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/swipe_refresher_color"
             android:src="@drawable/fav"
             android:id="@+id/fab_action_button_fav"/>
 

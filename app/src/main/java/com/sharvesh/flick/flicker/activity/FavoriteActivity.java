@@ -58,7 +58,7 @@ public class FavoriteActivity extends AppCompatActivity {
             @Override
             protected Void doInBackground(Void... voids) {
                 moviesList.clear();
-                moviesList.addAll(favoriteDbHelper.getAllFavoriteMovieList());
+                moviesList.addAll(favoriteDbHelper.getAllFavorite());
                 return null;
             }
 
