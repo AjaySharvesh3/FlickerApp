@@ -57,7 +57,7 @@
                     android:src="@drawable/ic_back_button"/>
 
                 <com.like.LikeButton
-                    app:icon_type="heart"
+                    app:icon_type="Star"
                     app:icon_size="23dp"
                     android:id="@+id/fav_button"
                     android:layout_marginTop="5dp"
@@ -65,7 +65,34 @@
                     android:layout_marginStart="5dp"
                     android:layout_width="60dp"
                     android:layout_alignParentRight="true"
-                    android:layout_height="60dp"/>
+                    android:layout_height="60dp"
+                    app:circle_start_color="#F7DC6F"
+                    app:dots_primary_color="#E74C3C"
+                    app:dots_secondary_color="#F7DC6F"
+                    app:circle_end_color="#E74C3C"
+                    app:liked="true"
+                    app:anim_scale_factor="2"/>
+
+                    <!--<com.like.LikeButton-->
+                        <!--app:icon_type="Star"-->
+                        <!--android:layout_height="60dp"-->
+                        <!--android:layout_width="60dp"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:id="@+id/fav_button"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:layout_marginBottom="5dp"-->
+                        <!--android:layout_marginStart="5dp"-->
+                        <!--app:circle_start_color="@color/colorPrimary"-->
+                        <!--app:like_drawable="@drawable/thumb_on"-->
+                        <!--app:unlike_drawable="@drawable/thumb_off"-->
+                        <!--app:dots_primary_color="@color/colorAccent"-->
+                        <!--app:dots_secondary_color="@color/colorPrimary"-->
+                        <!--app:circle_end_color="@color/colorAccent"-->
+                        <!--app:icon_size="25dp"-->
+                        <!--app:liked="true"-->
+                        <!--app:anim_scale_factor="2"-->
+                        <!--app:is_enabled="false"-->
+                        <!--/>-->
 
                 </RelativeLayout>
 
@@ -85,10 +112,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:orientation="vertical">
-
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -278,7 +304,7 @@
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="196dp"
                 android:id="@+id/recycler_view_casts"
                 android:scrollbarStyle="insideInset"
                 android:orientation="horizontal"

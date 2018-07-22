@@ -40,12 +40,8 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.CastViewHolder
         holder.castName.setText(castsList.get(position).getCast_name());
         Picasso.with(context)
                 .load(castsList.get(position).getCast_poster())
-                .placeholder(R.drawable.gifload)
+                .placeholder(R.drawable.cast_icon)
                 .into(holder.poster_thumbnail);
-
-        Animation animation = AnimationUtils.loadAnimation(context,
-                R.anim.anim_bottom);
-        holder.itemView.startAnimation(animation);
     }
 
     @Override

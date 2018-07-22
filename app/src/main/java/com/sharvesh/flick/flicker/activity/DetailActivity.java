@@ -191,6 +191,17 @@ public class DetailActivity extends AppCompatActivity {
                 likeButton.setLiked(false);
             }
         });
+
+        favoriteDbHelper = new FavoriteDbHelper(this);
+        likeButton.setLiked(false);
+        List<Movies> moviesListFavs = favoriteDbHelper.getAllFavorite();
+        for (int i = 0; i < moviesListFavs.size(); i++) {
+            Log.d("Favorite Movies: ", moviesListFavs.get(i).toString());
+            if (moviesListFavs.get(i).getOriginalTitle().equals(movieName.getText().toString())) {
+                likeButton.setLiked(true);
+                break;
+            }
+        }
     }
 
 
