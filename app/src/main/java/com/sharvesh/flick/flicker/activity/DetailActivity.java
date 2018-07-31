@@ -100,6 +100,8 @@ public class DetailActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_id);
         collapsingToolbarLayout.setTitleEnabled(true);
 
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolBar_detail);
+
         movieName = findViewById(R.id.movie_name);
         releaseDate = findViewById(R.id.releaseDate);
         voteAverage = findViewById(R.id.vote);
@@ -236,7 +238,7 @@ public class DetailActivity extends AppCompatActivity {
                 public void onResponse(retrofit2.Call<TrailerResponse> call, Response<TrailerResponse> response) {
                         List<Trailers> trailer = response.body().getResults();
                         recyclerViewTrailers.setAdapter(new TrailerAdapter(getApplicationContext(), trailer));
-                        recyclerViewTrailers.smoothScrollToPosition(0);
+                        //recyclerViewTrailers.smoothScrollToPosition(0);
                     }
 
                 @Override
@@ -252,12 +254,9 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-
     private void initViewsCastList(){
         castsList = new ArrayList<>();
         castAdapter = new CastAdapter(getApplicationContext(), castsList);
-
-
 
         LinearLayoutManager mLayoutManager =
                 new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -285,7 +284,7 @@ public class DetailActivity extends AppCompatActivity {
                 public void onResponse(retrofit2.Call<CastResponses> call, Response<CastResponses> response) {
                     List<Casts> castsList = response.body().getResults();
                     recyclerViewCasts.setAdapter(new CastAdapter(getApplicationContext(), castsList));
-                    recyclerViewCasts.smoothScrollToPosition(0);
+                    //recyclerViewCasts.smoothScrollToPosition(0);
                 }
 
                 @Override
@@ -330,7 +329,7 @@ public class DetailActivity extends AppCompatActivity {
                 public void onResponse(retrofit2.Call<ReviewResponses> call, Response<ReviewResponses> response) {
                     List<Reviews> reviewsList = response.body().getReviewsList();
                     recyclerViewReviews.setAdapter(new ReviewAdapter(getApplicationContext(), reviewsList));
-                    recyclerViewReviews.smoothScrollToPosition(0);
+                    //recyclerViewReviews.smoothScrollToPosition(0);
                 }
 
                 @Override

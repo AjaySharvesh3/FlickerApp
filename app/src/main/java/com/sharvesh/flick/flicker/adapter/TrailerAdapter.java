@@ -42,7 +42,6 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.TrailerV
     @Override
     public void onBindViewHolder(final TrailerAdapter.TrailerViewHolder viewHolder, int i){
         viewHolder.title.setText(trailerList.get(i).getName());
-        Picasso.with(mContext).load(trailerList.get(i).getKey()).into(viewHolder.thumbnail);
     }
 
     @Override

@@ -13,6 +13,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabItem;
@@ -66,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionMenu floatingActionMenu;
     FloatingActionButton floatingActionButtonSettings, floatingActionButtonFav;
     CoordinatorLayout coordinatorLayout;
-//    private String[] colors = {"POPULAR", "TOP RATED", "NOW PLAYING", "UP COMING"};
+    private String[] titles = {"POPULAR", "TOP RATED", "NOW PLAYING", "UP COMING"};
+
+    CollapsingToolbarLayout collapsingToolbarLayout;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -76,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_id_main);
 
 //        ImageView img = findViewById(R.id.img);
 //        Picasso.with(this).load("http://image.tmdb.org/t/p/w1280////gBmrsugfWpiXRh13Vo3j0WW55qD.jpg").into(img);
@@ -110,9 +115,9 @@ public class MainActivity extends AppCompatActivity {
         final ViewPager viewPager = findViewById(R.id.viewpager);
 
 
-//        for (String color : colors) {
-//            tabLayout.addTab(tabLayout.newTab().setText(color));
-//        }
+        for (String title : titles) {
+            tabLayout.addTab(tabLayout.newTab().setText(title));
+        }
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
@@ -127,27 +132,27 @@ public class MainActivity extends AppCompatActivity {
                 TextView tabText = (TextView) tabs.getChildAt(1);
                 tabText.setTypeface(tabText.getTypeface(), Typeface.NORMAL);
 
-//                int colorFrom = ((ColorDrawable) toolbar.getBackground()).getColor();
-//                int colorTo = getColorForTab(tab.getPosition());
-//
-//                ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
-//                colorAnimation.setDuration(1000);
-//                colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-//                    @Override
-//                    public void onAnimationUpdate(ValueAnimator animator) {
-//                        int color = (int) animator.getAnimatedValue();
-//
-//                        toolbar.setBackgroundColor(color);
-//                        tabLayout.setBackgroundColor(color);
-//
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                            getWindow().setStatusBarColor(color);
-//                        }
-//                    }
-//
-//                });
-//                colorAnimation.start();
-//                toolbar.setTitle(colors[tab.getPosition()].toUpperCase());
+                int colorFrom = ((ColorDrawable) toolbar.getBackground()).getColor();
+                int colorTo = getColorForTab(tab.getPosition());
+
+                ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+                colorAnimation.setDuration(1000);
+                colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animator) {
+                        int color = (int) animator.getAnimatedValue();
+
+                        toolbar.setBackgroundColor(color);
+                        tabLayout.setBackgroundColor(color);
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            getWindow().setStatusBarColor(color);
+                        }
+                    }
+
+                });
+                colorAnimation.start();
+                toolbar.setTitle(titles[tab.getPosition()].toUpperCase());
             }
 
             @Override

@@ -23,7 +23,6 @@
             app:layout_scrollFlags="exitUntilCollapsed|scroll"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginStart="48dp"
-            android:background="@drawable/grad_bg"
             app:title="Anime Title"
             app:expandedTitleMarginEnd="64dp"
             app:toolbarId="@+id/toolbar">
@@ -39,6 +38,7 @@
                 tools:ignore="ContentDescription"/>
 
             <android.support.v7.widget.Toolbar
+                android:id="@+id/toolBar_detail"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
@@ -107,6 +107,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:paddingLeft="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/grad_bg"
         android:paddingRight="10dp" >
 
@@ -304,7 +305,7 @@
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="196dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/recycler_view_casts"
                 android:scrollbarStyle="insideInset"
                 android:orientation="horizontal"
@@ -330,7 +331,7 @@
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/recycler_view_reviews"
                 android:scrollbarStyle="insideInset"
                 android:orientation="horizontal"
@@ -356,11 +357,12 @@
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/recycler_view_trailers"
                 android:scrollbarStyle="insideInset"
                 android:nestedScrollingEnabled="true"
                 android:orientation="vertical"
+                android:layout_marginBottom="10dp"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager"
                 tools:targetApi="lollipop"/>
 

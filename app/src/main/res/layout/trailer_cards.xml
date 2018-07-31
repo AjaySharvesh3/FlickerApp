@@ -24,8 +24,8 @@
                 android:layout_height="100dp"
                 android:fitsSystemWindows="true"
                 android:padding="5dp"
+                android:id="@+id/backdrop_images"
                 android:scaleType="centerCrop"
-                android:id="@+id/backdrop_image"
                 android:src="@drawable/youtube"/>
 
             <TextView
