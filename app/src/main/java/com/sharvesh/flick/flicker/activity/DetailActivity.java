@@ -1,43 +1,22 @@
 package com.sharvesh.flick.flicker.activity;
 
-import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.telecom.Call;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
-
-import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.sharvesh.flick.flicker.BuildConfig;
@@ -55,7 +34,6 @@ import com.sharvesh.flick.flicker.model.ReviewResponses;
 import com.sharvesh.flick.flicker.model.Reviews;
 import com.sharvesh.flick.flicker.model.TrailerResponse;
 import com.sharvesh.flick.flicker.model.Trailers;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -71,8 +49,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView languageTv;
     TextView overviewTv;
     ImageView posterImage;
+    TextView noReviews;
     ImageView backdropImage;
-
     ImageButton imageButton;
 
     RecyclerView recyclerViewTrailers, recyclerViewCasts, recyclerViewReviews;
@@ -88,7 +66,7 @@ public class DetailActivity extends AppCompatActivity {
     CoordinatorLayout coordinatorLayout;
 
     private FavoriteDbHelper favoriteDbHelper;
-    private Movies favMovies;
+    Movies favMovies;
     private final AppCompatActivity activity = DetailActivity.this;
 
 
@@ -100,8 +78,6 @@ public class DetailActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_id);
         collapsingToolbarLayout.setTitleEnabled(true);
 
-        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolBar_detail);
-
         movieName = findViewById(R.id.movie_name);
         releaseDate = findViewById(R.id.releaseDate);
         voteAverage = findViewById(R.id.vote);
@@ -109,6 +85,7 @@ public class DetailActivity extends AppCompatActivity {
         overviewTv = findViewById(R.id.overview);
         posterImage = findViewById(R.id.poster);
         backdropImage = findViewById(R.id.backdrop);
+        noReviews = findViewById(R.id.noReviews);
         movieName.setSelected(true);
 
         imageButton = findViewById(R.id.back_button);
@@ -210,8 +187,6 @@ public class DetailActivity extends AppCompatActivity {
     private void initViewsVideoList(){
         trailersList = new ArrayList<>();
         trailerAdapter = new TrailerAdapter(getApplicationContext(), trailersList);
-
-
         LinearLayoutManager mLayoutManager =
                 new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewTrailers = findViewById(R.id.recycler_view_trailers);
@@ -219,7 +194,6 @@ public class DetailActivity extends AppCompatActivity {
         recyclerViewTrailers.setLayoutManager(mLayoutManager);
         recyclerViewTrailers.setAdapter(trailerAdapter);
         trailerAdapter.notifyDataSetChanged();
-
         loadJSON_Trailer();
     }
 
@@ -240,14 +214,12 @@ public class DetailActivity extends AppCompatActivity {
                         recyclerViewTrailers.setAdapter(new TrailerAdapter(getApplicationContext(), trailer));
                         //recyclerViewTrailers.smoothScrollToPosition(0);
                     }
-
                 @Override
                 public void onFailure(retrofit2.Call<TrailerResponse> call, Throwable t) {
                     Log.d("Error", t.getMessage());
                     Toast.makeText(DetailActivity.this, "Error fetching trailer data", Toast.LENGTH_SHORT).show();
                 }
             });
-
         }catch (Exception e){
             Log.d("Error", e.getMessage());
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
@@ -257,16 +229,13 @@ public class DetailActivity extends AppCompatActivity {
     private void initViewsCastList(){
         castsList = new ArrayList<>();
         castAdapter = new CastAdapter(getApplicationContext(), castsList);
-
         LinearLayoutManager mLayoutManager =
                 new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewCasts = findViewById(R.id.recycler_view_casts);
         recyclerViewCasts.setLayoutManager(mLayoutManager);
         recyclerViewCasts.setAdapter(castAdapter);
         castAdapter.notifyDataSetChanged();
-
         loadJSON_Casts();
-
     }
 
     private void loadJSON_Casts(){
@@ -286,7 +255,6 @@ public class DetailActivity extends AppCompatActivity {
                     recyclerViewCasts.setAdapter(new CastAdapter(getApplicationContext(), castsList));
                     //recyclerViewCasts.smoothScrollToPosition(0);
                 }
-
                 @Override
                 public void onFailure(retrofit2.Call<CastResponses> call, Throwable t) {
                     Log.d("Error", t.getMessage());
@@ -302,14 +270,12 @@ public class DetailActivity extends AppCompatActivity {
     private void initView_reviews () {
         reviewsList = new ArrayList<>();
         reviewAdapter = new ReviewAdapter(getApplicationContext(), reviewsList);
-
         LinearLayoutManager staggeredGridLayoutManager =
                 new LinearLayoutManager(getApplicationContext());
         recyclerViewReviews = findViewById(R.id.recycler_view_reviews);
         recyclerViewReviews.setLayoutManager(staggeredGridLayoutManager);
         recyclerViewReviews.setAdapter(reviewAdapter);
         reviewAdapter.notifyDataSetChanged();
-
         loadJSON_reviews();
     }
 
@@ -320,7 +286,6 @@ public class DetailActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Please obtain your API Key from themoviedb.org", Toast.LENGTH_SHORT).show();
                 return;
             }
-
             Client Client = new Client();
             Services apiServices = Client.getClient().create(Services.class);
             retrofit2.Call<ReviewResponses> call = apiServices.getReviews(movie_id, BuildConfig.THE_MOVIE_DB_API_KEY);
@@ -330,8 +295,10 @@ public class DetailActivity extends AppCompatActivity {
                     List<Reviews> reviewsList = response.body().getReviewsList();
                     recyclerViewReviews.setAdapter(new ReviewAdapter(getApplicationContext(), reviewsList));
                     //recyclerViewReviews.smoothScrollToPosition(0);
+                    if (reviewsList.isEmpty()) {
+                        noReviews.setVisibility(View.VISIBLE);
+                    }
                 }
-
                 @Override
                 public void onFailure(retrofit2.Call<ReviewResponses> call, Throwable t) {
                     Log.d("Error", t.getMessage());
@@ -350,13 +317,11 @@ public class DetailActivity extends AppCompatActivity {
         int movie_id = getIntent().getExtras().getInt("id");
         String vote = getIntent().getExtras().getString("vote_average");
         String poster = getIntent().getExtras().getString("poster_path");
-
         favMovies.setId(movie_id);
         favMovies.setOriginalTitle(movieName.getText().toString().trim());
         favMovies.setPosterPath(poster);
         favMovies.setVoteAverage(Double.parseDouble(vote));
         favMovies.setOverview(overviewTv.getText().toString().trim());
-
         favoriteDbHelper.addFavorite(favMovies);
     }
 

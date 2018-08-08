@@ -34,9 +34,8 @@ import retrofit2.Response;
 public class UpComingMoviesFragment extends Fragment{
 
     private RecyclerView recyclerView;
-    private MovieAdapter movieAdapter;
-    private List<Movies> moviesList;
-    private SwipeRefreshLayout swipeRefreshLayout;
+    MovieAdapter movieAdapter;
+    List<Movies> moviesList;
     ProgressDialog progressDialog;
     View view;
 

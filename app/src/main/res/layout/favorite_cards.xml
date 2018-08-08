@@ -16,7 +16,7 @@
         android:paddingTop="@dimen/card_margin"
         android:layout_margin="@dimen/card_margin"
         app:cardCornerRadius="5dp"
-        app:cardElevation="5dp"
+        app:cardElevation="@dimen/five_dp"
         android:clipToPadding="true">
 
         <RelativeLayout
@@ -35,7 +35,7 @@
 
             <TextView
                 android:id="@+id/movie_title"
-                android:layout_width="207dp"
+                android:layout_width="@dimen/two_zero_seven_dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:transitionName="FlickerText"
@@ -52,14 +52,14 @@
                 tools:text="@string/app_name" />
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/twenty_dp"
+                android:layout_height="@dimen/twenty_dp"
                 android:src="@drawable/ic_rate"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
+                android:layout_marginTop="@dimen/three_dp"
+                android:layout_marginBottom="@dimen/three_dp"
                 android:layout_alignLeft="@+id/user_rating"
                 android:layout_alignBottom="@+id/user_rating"
-                android:layout_marginStart="-20dp"/>
+                android:layout_marginEnd="@dimen/twenty_dp"/>
 
             <TextView
                 android:id="@+id/user_rating"
@@ -67,8 +67,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/movie_title"
                 tools:text="@string/rating"
-                android:layout_marginStart="25dp"
-                android:paddingLeft="3dp"
+                android:layout_marginStart="@dimen/t_five_dp"
+                android:paddingLeft="@dimen/three_dp"
                 android:paddingBottom="@dimen/user_rating_padding_bottom"
                 android:paddingRight="@dimen/movie_title_padding"
                 android:textSize="@dimen/user_rating" />

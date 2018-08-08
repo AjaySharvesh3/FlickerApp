@@ -13,6 +13,13 @@
     <string name="fav">Favorites</string>
     <string name="add_to_favorite">ADD TO YOUR FAVORITE LIST</string>
     <string name="way_to_hollywood">Way  for  hollywood</string>
+    <string name="noReviews">There is no reviews for this movie.</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="animeTitle">Anime Title</string>
+    <string name="release_date">Release Date</string>
+    <string name="user_rating">User Rating</string>
+    <string name="language">Language</string>
+    <string name="animeDescription">Anime Description</string>
 
     <style name="popular">Popular</style>
 

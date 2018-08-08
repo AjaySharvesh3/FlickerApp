@@ -37,8 +37,8 @@ import retrofit2.Response;
 public class PopularMoviesFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private MovieAdapter movieAdapter;
-    private List<Movies> moviesList;
+    MovieAdapter movieAdapter;
+    List<Movies> moviesList;
     ProgressDialog progressDialog;
     View view;
 

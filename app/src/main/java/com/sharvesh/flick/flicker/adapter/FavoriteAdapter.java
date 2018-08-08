@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sharvesh.flick.flicker.R;
-import com.sharvesh.flick.flicker.model.Casts;
 import com.sharvesh.flick.flicker.model.Movies;
 import com.squareup.picasso.Picasso;
 

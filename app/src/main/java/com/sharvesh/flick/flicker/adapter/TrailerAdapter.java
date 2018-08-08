@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.SyncStateContract;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,24 +32,22 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.TrailerV
         this.trailerList = trailerList;
     }
 
+    @NonNull
     @Override
-    public TrailerAdapter.TrailerViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
+    public TrailerAdapter.TrailerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i){
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.trailer_cards, viewGroup, false);
         return new TrailerViewHolder(view);
-
     }
 
     @Override
-    public void onBindViewHolder(final TrailerAdapter.TrailerViewHolder viewHolder, int i){
+    public void onBindViewHolder(@NonNull final TrailerAdapter.TrailerViewHolder viewHolder, int i){
         viewHolder.title.setText(trailerList.get(i).getName());
     }
 
     @Override
     public int getItemCount(){
-
         return trailerList.size();
-
     }
 
    public class TrailerViewHolder extends RecyclerView.ViewHolder{

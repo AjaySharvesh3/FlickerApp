@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.telecom.Call;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,10 +32,9 @@ import retrofit2.Response;
 public class NowPlayingMoviesFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private MovieAdapter movieAdapter;
-    private List<Movies> moviesList;
-    private SwipeRefreshLayout swipeRefreshLayout;
     ProgressDialog progressDialog;
+    MovieAdapter movieAdapter;
+    List<Movies> moviesList;
     View view;
 
     public NowPlayingMoviesFragment() {
@@ -89,7 +86,6 @@ public class NowPlayingMoviesFragment extends Fragment {
                 progressDialog.dismiss();
                 return;
             }
-
             Client client = new Client();
             Services services = Client.getClient().create(Services.class);
             retrofit2.Call<MovieResponse> call = services.getNowPlayingMovies(BuildConfig.THE_MOVIE_DB_API_KEY);
@@ -101,14 +97,12 @@ public class NowPlayingMoviesFragment extends Fragment {
                     recyclerView.smoothScrollToPosition(0);
                     progressDialog.dismiss();
                 }
-
                 @Override
                 public void onFailure(retrofit2.Call<MovieResponse> call, Throwable t) {
                     Log.d("Error: ", t.getMessage());
                     Toast.makeText(getContext(), "Oops! Fetching Error, Try Again!", Toast.LENGTH_LONG).show();
                 }
             });
-
         }   catch (Exception e) {
             Log.d("Error: ", e.getMessage());
             Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();

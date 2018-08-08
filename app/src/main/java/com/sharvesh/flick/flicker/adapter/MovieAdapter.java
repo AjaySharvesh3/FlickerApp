@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,14 +37,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         this.movies = movies;
     }
 
+    @NonNull
     @Override
-    public MovieAdapter.MovieViewHolder onCreateViewHolder(ViewGroup viewGroup, int position) {
+    public MovieAdapter.MovieViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.movie_cards, viewGroup, false);
         return new MovieViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final MovieAdapter.MovieViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull final MovieAdapter.MovieViewHolder viewHolder, int position) {
         viewHolder.movieTitle.setText(movies.get(position).getOriginalTitle());
         String average_vote = Double.toString(movies.get(position).getVoteAverage());
         viewHolder.ratings.setText(average_vote);
@@ -64,13 +66,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         return movies.size();
     }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder {
+    class MovieViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView movieTitle;
-        public TextView ratings;
-        public ImageView posterThumbnail;
+        TextView movieTitle;
+        TextView ratings;
+        ImageView posterThumbnail;
 
-        public MovieViewHolder(final View view) {
+        MovieViewHolder(final View view) {
             super(view);
             movieTitle = view.findViewById(R.id.movie_title);
             ratings = view.findViewById(R.id.user_rating);
@@ -90,7 +92,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
                         intent.putExtra("backdrop_path", movies.get(indexPosition).getBackdropPath());
                         intent.putExtra("release_date", movies.get(indexPosition).getReleaseDate());
                         intent.putExtra("id", movies.get(indexPosition).getId());
-                        intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,view.findViewById(R.id.poster_thumbnail), "Flicker");
                         context.startActivity(intent, optionsCompat.toBundle());
                     }

@@ -34,4 +34,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="prefTheme">@style/PreferenceThemeOverlay</style>
 </resources>

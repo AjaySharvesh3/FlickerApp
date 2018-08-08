@@ -19,5 +19,9 @@
     <color name="yellow">#f4c20d</color>
     <color name="red">#db3236</color>
     <color name="blue">#4885ed</color>
+    <color name="liteYellow">#F7DC6F</color>
+    <color name="liteRed">#E74C3C</color>
+    <color name="greyy">#F2FFFFFF</color>
+    <color name="white_gray">#D6EAF8</color>
 
 </resources>
