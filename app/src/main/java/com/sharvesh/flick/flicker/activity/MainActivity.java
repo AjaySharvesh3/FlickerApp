@@ -120,22 +120,18 @@ public class MainActivity extends AppCompatActivity {
                 colorAnimation.start();
                 toolbar.setTitle(titles[tab.getPosition()].toUpperCase());
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
                 LinearLayout tabs = (LinearLayout) ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(tab.getPosition());
                 TextView tabTextView = (TextView) tabs.getChildAt(1);
                 tabTextView.setTypeface(tabTextView.getTypeface(), Typeface.NORMAL);
             }
-
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
         setupTabIcons();
-//        onClickSettingFab();
-//        onClickFavFab();
     }
 
     private void setupTabIcons() {
@@ -150,15 +146,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
-//    private void onClickFavFab() {
-//        floatingActionButtonFav.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, FavoriteActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//    }
 
     public int getColorForTab(int position) {
         if (position == 0) return ContextCompat.getColor(this, R.color.blue);

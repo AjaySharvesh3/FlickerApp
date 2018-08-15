@@ -59,8 +59,8 @@
             android:layout_marginBottom="@dimen/three_dp"
             android:layout_alignLeft="@+id/user_rating"
             android:layout_alignBottom="@+id/user_rating"
-            android:layout_marginEnd="@dimen/twenty_dp"/>
-
+            android:layout_marginStart="-20dp"
+/>
         <TextView
             android:id="@+id/user_rating"
             android:layout_width="match_parent"
