@@ -17,6 +17,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.sharvesh.flick.flicker.BuildConfig;
@@ -98,6 +101,10 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        TapTargetView.showFor(this,
+                TapTarget.forView(findViewById(R.id.fav_button), "Press favorite button", "It will add to the favorite list.")
+                        .tintTarget(false).outerCircleColor(R.color.yellow));
 
         Intent startIntentActivity = getIntent();
         if (startIntentActivity.hasExtra("original_title")) {
@@ -212,7 +219,7 @@ public class DetailActivity extends AppCompatActivity {
                 public void onResponse(retrofit2.Call<TrailerResponse> call, Response<TrailerResponse> response) {
                         List<Trailers> trailer = response.body().getResults();
                         recyclerViewTrailers.setAdapter(new TrailerAdapter(getApplicationContext(), trailer));
-                        //recyclerViewTrailers.smoothScrollToPosition(0);
+                        recyclerViewTrailers.smoothScrollToPosition(0);
                     }
                 @Override
                 public void onFailure(retrofit2.Call<TrailerResponse> call, Throwable t) {
@@ -253,7 +260,7 @@ public class DetailActivity extends AppCompatActivity {
                 public void onResponse(retrofit2.Call<CastResponses> call, Response<CastResponses> response) {
                     List<Casts> castsList = response.body().getResults();
                     recyclerViewCasts.setAdapter(new CastAdapter(getApplicationContext(), castsList));
-                    //recyclerViewCasts.smoothScrollToPosition(0);
+                    recyclerViewCasts.smoothScrollToPosition(0);
                 }
                 @Override
                 public void onFailure(retrofit2.Call<CastResponses> call, Throwable t) {
@@ -294,7 +301,7 @@ public class DetailActivity extends AppCompatActivity {
                 public void onResponse(retrofit2.Call<ReviewResponses> call, Response<ReviewResponses> response) {
                     List<Reviews> reviewsList = response.body().getReviewsList();
                     recyclerViewReviews.setAdapter(new ReviewAdapter(getApplicationContext(), reviewsList));
-                    //recyclerViewReviews.smoothScrollToPosition(0);
+                    recyclerViewReviews.smoothScrollToPosition(0);
                     if (reviewsList.isEmpty()) {
                         noReviews.setVisibility(View.VISIBLE);
                     }

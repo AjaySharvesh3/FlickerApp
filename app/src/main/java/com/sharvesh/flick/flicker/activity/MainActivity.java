@@ -5,8 +5,10 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabItem;
@@ -20,6 +22,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.sharvesh.flick.flicker.R;
 import com.sharvesh.flick.flicker.adapter.PagerAdapter;
 
@@ -29,11 +34,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView appName;
     private TabLayout tabLayout;
     CoordinatorLayout coordinatorLayout;
+    Toolbar toolbar;
 
-//    FloatingActionMenu floatingActionMenu;
-    private String[] titles = {"POPULAR", "TOP RATED", "NOW PLAYING", "UP COMING"};
-//    FloatingActionButton floatingActionButtonSettings, floatingActionButtonFav;
-
+    AppBarLayout appBarLayout;
     CollapsingToolbarLayout collapsingToolbarLayout;
     android.support.design.widget.FloatingActionButton floatingActionButton;
 
@@ -43,26 +46,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        appBarLayout = findViewById(R.id.appbarlayout_id);
         collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_id_main);
         coordinatorLayout = findViewById(R.id.coordinator_layout);
         floatingActionButton = findViewById(R.id.floating_fab_menu);
 
-//        floatingActionMenu = findViewById(R.id.floating_fab_menu);
-//        floatingActionButtonSettings = findViewById(R.id.fab_action_button_settings);
-//        floatingActionButtonFav = findViewById(R.id.fab_action_button_fav);
-//        floatingActionMenu.setOnMenuToggleListener(new FloatingActionMenu.OnMenuToggleListener() {
-//            @Override
-//            public void onMenuToggle(boolean opened) {
-//                if (floatingActionMenu.isOpened()) {
-//                    coordinatorLayout.setVisibility(View.GONE);
-//                } else {
-//                    coordinatorLayout.setVisibility(View.VISIBLE);
-//                }
-//            }
-//        });
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        TapTargetView.showFor(this,
+                TapTarget.forView(findViewById(R.id.floating_fab_menu), "Favorite Movies List", "Added favourite movies will shown here.")
+        .tintTarget(false).outerCircleColor(R.color.red));
 
         appName = findViewById(R.id.app_name);
         typeface = Typeface.createFromAsset(getAssets(), "FTY STRATEGYCIDE NCV.ttf");
@@ -82,15 +77,14 @@ public class MainActivity extends AppCompatActivity {
         final TabItem topRatedTabItem = findViewById(R.id.top_rated);
         final TabItem nowPlayingTabItem = findViewById(R.id.now_playing);
         final TabItem upComingTabItem = findViewById(R.id.up_coming);
-        for (String title : titles) {
-            tabLayout.addTab(tabLayout.newTab().setText(title));
-        }
+
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -98,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout tabs = (LinearLayout) ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(tab.getPosition());
                 TextView tabText = (TextView) tabs.getChildAt(1);
                 tabText.setTypeface(tabText.getTypeface(), Typeface.NORMAL);
-                                int colorFrom = ((ColorDrawable) toolbar.getBackground()).getColor();
+                int colorFrom = ((ColorDrawable) collapsingToolbarLayout.getBackground()).getColor();
                 int colorTo = getColorForTab(tab.getPosition());
 
                 ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
@@ -110,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
                         toolbar.setBackgroundColor(color);
                         tabLayout.setBackgroundColor(color);
+                        coordinatorLayout.setBackgroundColor(color);
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             getWindow().setStatusBarColor(color);
@@ -118,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
 
                 });
                 colorAnimation.start();
-                toolbar.setTitle(titles[tab.getPosition()].toUpperCase());
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {

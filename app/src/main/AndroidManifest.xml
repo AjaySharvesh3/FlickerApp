@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.MainActivity" />
         <activity
             android:name=".activity.DetailActivity"
             android:label="Movies"
@@ -33,6 +33,7 @@
             android:value=".activity.MainActivity" />
 
         <activity android:name=".activity.FavoriteActivity" />
+        <activity android:name=".WelcomeActivity"></activity>
     </application>
 
 </manifest>

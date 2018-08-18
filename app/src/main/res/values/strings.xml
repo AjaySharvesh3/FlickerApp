@@ -20,6 +20,10 @@
     <string name="user_rating">User Rating</string>
     <string name="language">Language</string>
     <string name="animeDescription">Anime Description</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="google_udacity_scholarship">Google Udacity Scholarship</string>
+    <string name="welcome_text_one">Developed Under Udacity\'s Nanodegree Program with the help of Google India Scholarship</string>
 
     <style name="popular">Popular</style>
 

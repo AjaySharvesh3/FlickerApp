@@ -36,7 +36,7 @@ public class UpComingMoviesFragment extends Fragment{
     private RecyclerView recyclerView;
     MovieAdapter movieAdapter;
     List<Movies> moviesList;
-    ProgressDialog progressDialog;
+//    ProgressDialog progressDialog;
     View view;
 
     public UpComingMoviesFragment() {
@@ -56,13 +56,13 @@ public class UpComingMoviesFragment extends Fragment{
     }
 
     private void initViews() {
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("Fetching data...");
-        progressDialog.setTitle("Wait a second...");
-        progressDialog.setCancelable(false);
-        progressDialog.setIndeterminate(false);
-        progressDialog.show();
+//        progressDialog = new ProgressDialog(getContext());
+//        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        progressDialog.setMessage("Fetching data...");
+//        progressDialog.setTitle("Wait a second...");
+//        progressDialog.setCancelable(false);
+//        progressDialog.setIndeterminate(false);
+//        progressDialog.show();
 
         recyclerView = view.findViewById(R.id.recycler_view);
         moviesList = new ArrayList<>();
@@ -76,7 +76,7 @@ public class UpComingMoviesFragment extends Fragment{
 
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(movieAdapter);
-        progressDialog.dismiss();
+//        progressDialog.dismiss();
         loadJsonData();
     }
 
@@ -84,7 +84,7 @@ public class UpComingMoviesFragment extends Fragment{
         try {
             if (BuildConfig.THE_MOVIE_DB_API_KEY.isEmpty()) {
                 Toast.makeText(getContext(), "Invalid API key!", Toast.LENGTH_LONG).show();
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
                 return;
             }
 
@@ -97,7 +97,7 @@ public class UpComingMoviesFragment extends Fragment{
                     List<Movies> moviesList = response.body().getResults();
                     recyclerView.setAdapter(new MovieAdapter(getContext(), moviesList));
                     recyclerView.smoothScrollToPosition(0);
-                    progressDialog.dismiss();
+//                    progressDialog.dismiss();
                 }
 
                 @Override

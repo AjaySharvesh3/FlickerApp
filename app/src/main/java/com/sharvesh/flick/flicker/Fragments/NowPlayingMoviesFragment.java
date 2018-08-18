@@ -32,7 +32,7 @@ import retrofit2.Response;
 public class NowPlayingMoviesFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    ProgressDialog progressDialog;
+//    ProgressDialog progressDialog;
     MovieAdapter movieAdapter;
     List<Movies> moviesList;
     View view;
@@ -54,13 +54,13 @@ public class NowPlayingMoviesFragment extends Fragment {
     }
 
     private void initView() {
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("Fetching data...");
-        progressDialog.setTitle("Wait a second...");
-        progressDialog.setCancelable(false);
-        progressDialog.setIndeterminate(false);
-        progressDialog.show();
+//        progressDialog = new ProgressDialog(getContext());
+//        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        progressDialog.setMessage("Fetching data...");
+//        progressDialog.setTitle("Wait a second...");
+//        progressDialog.setCancelable(false);
+//        progressDialog.setIndeterminate(false);
+//        progressDialog.show();
 
         recyclerView = view.findViewById(R.id.recycler_view);
         moviesList = new ArrayList<>();
@@ -83,7 +83,7 @@ public class NowPlayingMoviesFragment extends Fragment {
         try {
             if(BuildConfig.THE_MOVIE_DB_API_KEY.isEmpty()) {
                 Toast.makeText(getContext(), "Invalid API key!", Toast.LENGTH_LONG).show();
-                progressDialog.dismiss();
+                //progressDialog.dismiss();
                 return;
             }
             Client client = new Client();
@@ -95,7 +95,7 @@ public class NowPlayingMoviesFragment extends Fragment {
                     List<Movies> moviesList = response.body().getResults();
                     recyclerView.setAdapter(new MovieAdapter(getContext(), moviesList));
                     recyclerView.smoothScrollToPosition(0);
-                    progressDialog.dismiss();
+                    //progressDialog.dismiss();
                 }
                 @Override
                 public void onFailure(retrofit2.Call<MovieResponse> call, Throwable t) {

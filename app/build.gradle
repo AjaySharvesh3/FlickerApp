@@ -21,6 +21,10 @@ android {
     }
 }
 
+repositories {
+    jcenter()
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
@@ -50,4 +54,5 @@ dependencies {
     implementation 'com.github.ivbaranov:materialfavoritebutton:0.1.4'
     implementation 'devlight.io:navigationtabbar:1.2.5'
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.12.0'
 }
